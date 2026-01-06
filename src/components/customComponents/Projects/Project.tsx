@@ -31,7 +31,8 @@ export default function GitiProjects(): JSX.Element {
           {courses.map((course, index) => (
             <CourseCard
               key={index}
-              title={course.title}
+              courseName={course.courseName}
+              tagline={course.tagline}
               image={course.image}
               price={course.price}
               originalPrice={course.originalPrice}

@@ -31,8 +31,11 @@ const Map = () => {
   {/* Main Content Stack */}
   <div className="space-y-2">
     <h1 className={`text-3xl lg:text-4xl xl:text-4xl  text-center md:text-left md:block text-[#ff0000] tracking-tight ${khandFont.className}`}>
-      Gain Real-World Experience Through Industry-Oriented Summer Training 2026 Programs with Live Projects
+      Engineering Students from across India participate
     </h1>
+    <p className={`text-lg lg:text-xl text-white text-center md:text-left md:block ${poppins.className}`}>
+      Gain Real-World Experience Through Industry-Oriented Summer Training 2026 Programs with Live Projects
+    </p>
   </div>
 
   {/* Apply Now Button - Centered on Mobile */}

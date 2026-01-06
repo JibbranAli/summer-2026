@@ -1,6 +1,7 @@
 // Course data for the 4 main courses displayed on homepage
 export interface Course {
-  title: string;
+  courseName: string;
+  tagline: string;
   image: {
     src: string;
     alt: string;
@@ -15,10 +16,11 @@ export interface Course {
 
 export const courses: Course[] = [
   {
-    title: "Full Stack Web Dev MERN",
+    courseName: "MERN Full Stack Web Development",
+    tagline: "Become a Full Stack Web Developer | Learn MERN Stack, Frontend & Backend Development with hands-on projects",
     image: {
       src: "/assets/Projects/MERN.png",
-      alt: "Full Stack Web Dev MERN",
+      alt: "MERN Full Stack Web Development",
       width: 400,
       height: 300,
     },
@@ -28,10 +30,11 @@ export const courses: Course[] = [
     brochurePdfUrl: "https://example.com/brochures/mern-brochure.pdf", // Dummy - replace later
   },
   {
-    title: "Data Sci ML",
+    courseName: "Data Science with Machine Learning & AI",
+    tagline: "Master Data Science, Machine Learning & AI | Build real-world ML models and AI applications",
     image: {
       src: "/assets/Projects/MLAI.png",
-      alt: "Data Science & Machine Learning",
+      alt: "Data Science with Machine Learning & AI",
       width: 400,
       height: 300,
     },
@@ -41,7 +44,8 @@ export const courses: Course[] = [
     brochurePdfUrl: "https://example.com/brochures/datasci-ml-brochure.pdf", // Dummy - replace later
   },
   {
-    title: "Data Analytics",
+    courseName: "Data Analytics",
+    tagline: "Learn Data Analytics | Analyze data, create insights, and make data-driven decisions",
     image: {
       src: "/assets/Projects/MLAI.png", // Using same image for now - replace later
       alt: "Data Analytics",
@@ -54,7 +58,8 @@ export const courses: Course[] = [
     brochurePdfUrl: "https://example.com/brochures/data-analytics-brochure.pdf", // Dummy - replace later
   },
   {
-    title: "Salesforce",
+    courseName: "Salesforce",
+    tagline: "Master Salesforce | Learn CRM, cloud computing, and Salesforce development",
     image: {
       src: "/assets/Projects/AWS.png", // Using AWS image for now - replace later
       alt: "Salesforce",

@@ -232,11 +232,11 @@ export default function BrochureFormDialog({
           <Button
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full bg-red-600 hover:bg-red-700 text-white"
+            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold text-base h-14 min-h-[56px] shadow-md"
           >
             {loading ? (
               <>
-                <Loader2 className="mr-2 animate-spin" />
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                 Submitting...
               </>
             ) : (

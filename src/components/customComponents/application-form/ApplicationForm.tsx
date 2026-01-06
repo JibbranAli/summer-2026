@@ -424,14 +424,14 @@ export function ApplicationForm() {
           <Button
             type="submit"
             className={cn(
-              "w-full bg-red-600 hover:bg-red-700 text-white",
+              "w-full bg-red-600 hover:bg-red-700 text-white font-semibold text-base md:text-sm h-14 md:h-10 min-h-[56px] md:min-h-[40px] shadow-md",
               isSubmitting && "opacity-50 cursor-not-allowed"
             )}
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-5 w-5 md:h-4 md:w-4 animate-spin" />
                 <span>Submitting...</span>
               </div>
             ) : (

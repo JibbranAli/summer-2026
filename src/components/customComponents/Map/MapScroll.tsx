@@ -29,26 +29,26 @@ const MapScroll = () => {
   ];
 
   return (
-    <div className="relative bg-black py-4">
-      <div className="flex flex-col gap-4 w-full">
+    <div className="relative bg-black py-2 md:py-4">
+      <div className="flex flex-col gap-4 md:gap-4 w-full">
         {/* Top row - 2 boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="w-full border border-gray-600 rounded-lg shadow-md p-5 hover:scale-[1.02] transition-transform duration-300 bg-gray-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4">
+          <div className="w-full border border-gray-600 rounded-lg shadow-md p-4 md:p-5 hover:scale-[1.02] transition-transform duration-300 bg-gray-800">
             <div className="w-full flex flex-col items-center justify-center text-center">
-              <h4 className={`text-white text-lg md:text-xl font-bold mb-3 ${khandFont.className}`}>
+              <h4 className={`text-white text-base md:text-lg lg:text-xl font-bold mb-2 md:mb-3 leading-tight ${khandFont.className}`}>
                 {dummyBoxes[0].title}
               </h4>
-              <p className={`text-gray-300 text-sm leading-relaxed ${poppins.className}`}>
+              <p className={`text-gray-300 text-sm md:text-sm leading-relaxed ${poppins.className}`}>
                 {dummyBoxes[0].description}
               </p>
             </div>
           </div>
-          <div className="w-full border border-gray-600 rounded-lg shadow-md p-5 hover:scale-[1.02] transition-transform duration-300 bg-gray-800">
+          <div className="w-full border border-gray-600 rounded-lg shadow-md p-4 md:p-5 hover:scale-[1.02] transition-transform duration-300 bg-gray-800">
             <div className="w-full flex flex-col items-center justify-center text-center">
-              <h4 className={`text-white text-lg md:text-xl font-bold mb-3 ${khandFont.className}`}>
+              <h4 className={`text-white text-base md:text-lg lg:text-xl font-bold mb-2 md:mb-3 leading-tight ${khandFont.className}`}>
                 {dummyBoxes[1].title}
               </h4>
-              <p className={`text-gray-300 text-sm leading-relaxed ${poppins.className}`}>
+              <p className={`text-gray-300 text-sm md:text-sm leading-relaxed ${poppins.className}`}>
                 {dummyBoxes[1].description}
               </p>
             </div>
@@ -56,12 +56,12 @@ const MapScroll = () => {
         </div>
         {/* Bottom row - 1 centered box */}
         <div className="flex justify-center">
-          <div className="w-full md:w-1/2 border border-gray-600 rounded-lg shadow-md p-5 hover:scale-[1.02] transition-transform duration-300 bg-gray-800">
+          <div className="w-full md:w-1/2 border border-gray-600 rounded-lg shadow-md p-4 md:p-5 hover:scale-[1.02] transition-transform duration-300 bg-gray-800">
             <div className="w-full flex flex-col items-center justify-center text-center">
-              <h4 className={`text-white text-lg md:text-xl font-bold mb-3 ${khandFont.className}`}>
+              <h4 className={`text-white text-base md:text-lg lg:text-xl font-bold mb-2 md:mb-3 leading-tight ${khandFont.className}`}>
                 {dummyBoxes[2].title}
               </h4>
-              <p className={`text-gray-300 text-sm leading-relaxed ${poppins.className}`}>
+              <p className={`text-gray-300 text-sm md:text-sm leading-relaxed ${poppins.className}`}>
                 {dummyBoxes[2].description}
               </p>
             </div>

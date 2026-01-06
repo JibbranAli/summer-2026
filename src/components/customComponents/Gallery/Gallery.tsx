@@ -196,11 +196,11 @@ const BentoGallery: React.FC = () => {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto md:min-h-screen sm:min-h-full pb-20 md:pb-4 md:mb-10 bg-black">
+      <div className="w-full max-w-7xl mx-auto md:min-h-screen sm:min-h-full pb-12 md:pb-4 md:mb-10 bg-black overflow-hidden">
       {/* Main Heading */}
-      <div className="w-full text-center py-2">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#ff0000]" id="Preivous"> Previous Summer 2024</h1>
-        <p className={`text-white text-sm md:text-3xl ${poppins.className}`}>Develop problem-solving skills through team-based exercises and enhance your professional portfolio with industry-relevant projects.</p>
+      <div className="w-full text-center py-4 md:py-2 px-4">
+        <h1 className="text-2xl md:text-4xl font-bold text-[#ff0000] leading-tight mb-3 md:mb-4" id="Preivous"> Previous Summer 2024</h1>
+        <p className={`text-white text-base md:text-3xl leading-relaxed ${poppins.className}`}>Develop problem-solving skills through team-based exercises and enhance your professional portfolio with industry-relevant projects.</p>
       </div>
 
       {/* Bento Grid for desktop */} 

@@ -24,7 +24,7 @@ export const courses: Course[] = [
     },
     price: "6,500",
     originalPrice: "10,000",
-    paymentLink: "https://rzp.io/rzp/iADTiZcf", // Dummy - replace later
+    paymentLink: "https://rzp.io/rzp/summer-mern",
     brochurePdfUrl: "https://example.com/brochures/mern-brochure.pdf", // Dummy - replace later
   },
   {
@@ -37,7 +37,7 @@ export const courses: Course[] = [
     },
     price: "5,500",
     originalPrice: "8,000",
-    paymentLink: "https://rzp.io/rzp/NV4dSzP", // Dummy - replace later
+    paymentLink: "https://rzp.io/rzp/summer-ml",
     brochurePdfUrl: "https://example.com/brochures/datasci-ml-brochure.pdf", // Dummy - replace later
   },
   {
@@ -50,7 +50,7 @@ export const courses: Course[] = [
     },
     price: "5,500",
     originalPrice: "8,000",
-    paymentLink: "https://rzp.io/rzp/NV4dSzP", // Dummy - replace later
+    paymentLink: "https://rzp.io/rzp/summer-data-analytics",
     brochurePdfUrl: "https://example.com/brochures/data-analytics-brochure.pdf", // Dummy - replace later
   },
   {
@@ -63,7 +63,7 @@ export const courses: Course[] = [
     },
     price: "6,500",
     originalPrice: "10,000",
-    paymentLink: "https://rzp.io/rzp/iADTiZcf", // Dummy - replace later
+    paymentLink: "https://rzp.io/rzp/summer-salesforce",
     brochurePdfUrl: "https://example.com/brochures/salesforce-brochure.pdf", // Dummy - replace later
   },
 ];

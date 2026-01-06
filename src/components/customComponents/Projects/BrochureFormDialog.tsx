@@ -66,11 +66,11 @@ export default function BrochureFormDialog({
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name as keyof FormData]: value,
     }));
 
     if (errors[name as keyof FormData]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors(prev => ({ ...prev, [name as keyof FormData]: undefined }));
     }
   };
 

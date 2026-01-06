@@ -290,15 +290,11 @@ export function ApplicationForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="cloud">AWS CLOUD COMPUTING</SelectItem>
-                    <SelectItem value="fullstack">PYTHON PROGRAMMING</SelectItem>
-                    <SelectItem value="ml"> PYTHON FULL STACK WEB DEVELOPMENT</SelectItem>
-                    <SelectItem value="genai">MACHINE LEARNING - AI</SelectItem>
-                    <SelectItem value="clouddevops"> MERN STACK DEVELOPMENT</SelectItem>
-                    <SelectItem value="mldevops"> GENERATIVE AI + MACHINE LEARNING</SelectItem>
-                    <SelectItem value="fullStackMachineLearning">FULL STACK + MACHINE LEARNING</SelectItem>
-                    <SelectItem value="CloudComputingAndFullStack"> CLOUD COMPUTING + FULL STACK WEB DEVELOPMENT</SelectItem>
-                    <SelectItem value="others"> OTHERS</SelectItem>
+                    <SelectItem value="dataScienceMLAI">Data Science with Machine Learning & AI</SelectItem>
+                    <SelectItem value="fullstackWebDev">Full-stack web development</SelectItem>
+                    <SelectItem value="dataAnalytics">Data Analytics</SelectItem>
+                    <SelectItem value="salesforce">Salesforce</SelectItem>
+                    <SelectItem value="others">Others</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -345,9 +341,9 @@ export function ApplicationForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="may2025">May 2025</SelectItem>
-                    <SelectItem value="june2025">June 2025</SelectItem>
-                    <SelectItem value="july2025">July 2025</SelectItem>
+                    <SelectItem value="may2026">May 2026</SelectItem>
+                    <SelectItem value="june2026">June 2026</SelectItem>
+                    <SelectItem value="july2026">July 2026</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />

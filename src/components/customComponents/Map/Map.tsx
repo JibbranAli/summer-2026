@@ -18,9 +18,9 @@ const khandFont = Khand({
 })
 const Map = () => {
   return (
-    <section className=" max-w-6xl pt-8 mx-auto ">
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-center gap-0">
-<div className="bg-black h-full pb-0 lg:p-10 space-y-6">
+    <section className=" max-w-7xl pt-8 mx-auto ">
+      <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] justify-center gap-0 items-center">
+<div className="bg-black h-full pb-0 lg:p-10 space-y-6 flex flex-col justify-center">
             {/* Decorative background elements */}
             <div className="absolute inset-0">
               <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_50%)]" />
@@ -31,11 +31,8 @@ const Map = () => {
   {/* Main Content Stack */}
   <div className="space-y-2">
     <h1 className={`text-3xl lg:text-4xl xl:text-4xl  text-center md:text-left md:block text-[#ff0000] tracking-tight ${khandFont.className}`}>
-      Engineering Students from across India participate
+      Gain Real-World Experience Through Industry-Oriented Summer Training 2026 Programs with Live Projects
     </h1>
-    <p className={`text-lg lg:text-2xl text-red-100 text-center md:text-left md:block ${poppins.className}`}>
-      The One & Only Integration Level Research Based Summer Internship Program
-    </p>
   </div>
 
   {/* Apply Now Button - Centered on Mobile */}
@@ -44,11 +41,11 @@ const Map = () => {
   <div className="hidden md:block">
     <MapScroll />
   </div>
-  <div className="flex pt-4 hidden justify-center md:block">
-    <a href="/application-form">
+  <div className="flex pt-6 hidden justify-center md:flex md:w-full md:max-w-[50%] md:mx-auto">
+    <a href="/application-form" className="w-full md:w-auto">
     <Button
                 size="lg"
-                className={`transform bg-[#ff0000] hover:bg-red-800 transition-all duration-300 hover:scale-105 px-8 py-3  shadow-lg hover:shadow-xl`}
+                className={`w-full md:w-auto bg-[#ff0000] hover:bg-[#ff0000]/90 text-white font-bold text-base md:text-lg py-6 px-10 md:px-12 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md`}
                
               >
                Apply Now
@@ -61,19 +58,19 @@ const Map = () => {
 </div>
 
 
-<div className="w-full h-full">
-  <img src="/assets/map/map.png" className="w-full h-[400px] lg:h-[550px]"/>
+<div className="w-full h-full flex items-center justify-center min-h-[600px] lg:min-h-[800px] xl:min-h-[900px]">
+  <img src="/assets/map/map.png" className="w-full h-[600px] lg:h-[800px] xl:h-[900px] object-contain"/>
   <div className=" md:hidden md:mt-4 pt-4">
              <MapScroll/>
              </div>
 </div>
 
 
-<div className="flex lg:hidden mt-8 justify-center md:hidden">
-    <a href="/application-form">
+<div className="flex lg:hidden mt-8 justify-center md:hidden px-4">
+    <a href="/application-form" className="w-full max-w-md">
     <Button
                 size="lg"
-                className={`transform bg-[#ff0000] hover:bg-red-800 transition-all duration-300 hover:scale-105 px-8 py-3 rounded-lg shadow-lg hover:shadow-xl`}
+                className={`w-full bg-[#ff0000] hover:bg-[#ff0000]/90 text-white font-bold text-base py-6 px-10 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md`}
                
               >
                Apply Now

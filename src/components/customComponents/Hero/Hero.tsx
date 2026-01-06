@@ -74,52 +74,52 @@ const Hero = () => {
       </div>
      
       <div className="relative md:-mt-12 lg:-mt-4 z-30">
-  <div className="bg-black rounded-lg p-6 shadow-lg max-w-6xl border border-white mx-auto">
+  <div className="bg-black rounded-lg p-6 md:p-8 shadow-lg max-w-6xl border-2 border-white mx-auto">
     <div className="flex flex-col lg:flex-row justify-between items-start gap-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
         {/* Admission Section */}
-        <div className="flex items-start gap-2 justify-start min-w-[250px]">
-          <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-red-50 rounded-lg">
-            <BsCalendarCheck className="w-5 h-5 text-[#ff0000]" />
+        <div className="flex items-start gap-3 justify-start min-w-[250px]">
+          <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-red-50 rounded-lg">
+            <BsCalendarCheck className="w-6 h-6 text-[#ff0000]" />
           </div>
           <div className="flex flex-col flex-grow min-w-0">
-            <span className="text-white text-xs font-medium uppercase tracking-wide">
+            <span className="text-white text-sm font-semibold uppercase tracking-wide">
               TENTATIVE START DATES
             </span>
-            <span className="font-bold text-xs text-white mt-1">
+            <span className="font-bold text-sm text-white mt-1.5">
               May 2026 / June 2026 / July 2026
             </span>
-            <Badge variant="outline" className="text-[#ff0000] border-red-200 text-[10px] mt-2 w-fit">
+            <Badge variant="outline" className="text-[#ff0000] border-red-200 text-xs mt-2 w-fit">
               Limited seats
             </Badge>
           </div>
         </div>
 
         {/* Duration Section */}
-        <div className="flex items-start gap-2 justify-start min-w-[250px]">
-          <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-red-50 rounded-lg">
-            <AiOutlineHourglass className="w-5 h-5 text-[#ff0000]" />
+        <div className="flex items-start gap-3 justify-start min-w-[250px]">
+          <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-red-50 rounded-lg">
+            <AiOutlineHourglass className="w-6 h-6 text-[#ff0000]" />
           </div>
           <div className="flex flex-col flex-grow min-w-0">
-            <span className="text-white text-xs font-medium uppercase tracking-wide">
+            <span className="text-white text-sm font-semibold uppercase tracking-wide">
               DURATION SUMMER PROGRAM​
             </span>
-            <span className="font-bold text-xs text-white mt-1">
+            <span className="font-bold text-sm text-white mt-1.5">
               6 weeks / 8 weeks
             </span>
           </div>
         </div>
 
         {/* Internship Section */}
-        <div className="flex items-start gap-2 justify-start min-w-[250px]">
-          <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-red-50 rounded-lg">
+        <div className="flex items-start gap-3 justify-start min-w-[250px]">
+          <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-red-50 rounded-lg">
             <Album className="w-6 h-6 text-[#ff0000]" />
           </div>
           <div className="flex flex-col flex-grow min-w-0">
-            <span className="text-white text-xs font-medium uppercase tracking-wide">
+            <span className="text-white text-sm font-semibold uppercase tracking-wide">
               Internship ​
             </span>
-            <span className="font-bold text-xs text-white mt-1">
+            <span className="font-bold text-sm text-white mt-1.5 leading-tight">
               Industry Recognised Internship (Project) Certificate
             </span>
           </div>
@@ -127,14 +127,14 @@ const Hero = () => {
 
         {/* Training Certificate Section */}
         <div className="flex items-start gap-3 justify-start min-w-[250px]">
-          <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-red-50 rounded-lg">
+          <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-red-50 rounded-lg">
             <ShieldCheck className="w-6 h-6 text-[#ff0000]" />
           </div>
           <div className="flex flex-col flex-grow min-w-0">
-            <span className="text-white text-xs font-medium uppercase tracking-wide">
+            <span className="text-white text-sm font-semibold uppercase tracking-wide">
               Training Certificate
             </span>
-            <span className="font-bold text-xs text-white mt-1">
+            <span className="font-bold text-sm text-white mt-1.5 leading-tight">
               Training Certificate from 
               <br></br>
               LinuxWorld Informatics Pvt Ltd
@@ -147,7 +147,7 @@ const Hero = () => {
       <div className="flex items-center justify-center lg:border-l lg:pl-6 w-full lg:w-auto mt-6 lg:mt-0">
         <div className="flex flex-col items-center justify-center w-full lg:w-auto">
           <a href="/application-form" target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
-            <Button className="bg-[#ff0000] w-full lg:w-auto text-sm py-6 px-8 hover:bg-[#ff0000]/90 hover:shadow-lg transition-all duration-300">
+            <Button className="bg-[#ff0000] w-full lg:w-auto text-base font-bold py-6 px-8 hover:bg-[#ff0000]/90 hover:shadow-lg transition-all duration-300">
               Apply Now
             </Button>
           </a>

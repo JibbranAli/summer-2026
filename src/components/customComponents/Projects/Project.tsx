@@ -19,10 +19,10 @@ export default function GitiProjects(): JSX.Element {
     <div className="relative bg-black" id="Projects">
       <div className="w-full text-center py-8" id="#Projects">
         <h1 className={`text-3xl md:text-4xl mt-4 text-[#ff0000] ${khandFont.className}`}>
-          4-6 Week Summer Training with a Live Project
+          4–6 Weeks Summer Industrial Training with Live Projects
         </h1>
         <p className={`text-white text-sm md:text-lg ${poppins.className}`}>
-          Learn from the basics with 100% practical implementation.
+          Gain Hands-On Experience in Trending Technologies and Boost Your Career Opportunities
         </p>
       </div>
 

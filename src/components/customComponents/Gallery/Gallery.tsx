@@ -200,7 +200,7 @@ const BentoGallery: React.FC = () => {
       {/* Main Heading */}
       <div className="w-full text-center py-2">
         <h1 className="text-3xl md:text-4xl font-bold text-[#ff0000]" id="Preivous"> Previous Summer 2024</h1>
-        <p className={`text-white text-sm md:text-3xl ${poppins.className}`}>See How Engineering Students From Across Indias Are Learning Together</p>
+        <p className={`text-white text-sm md:text-3xl ${poppins.className}`}>Develop problem-solving skills through team-based exercises and enhance your professional portfolio with industry-relevant projects.</p>
       </div>
 
       {/* Bento Grid for desktop */} 

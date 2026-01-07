@@ -12,37 +12,38 @@ const MobileGallery = () => {
   const swiperConfig = {
     modules: [Autoplay],
     autoplay: {
-      delay: 2000,
+      delay: 3000,
       disableOnInteraction: false,
     },
     loop: true,
-    spaceBetween: 30,
+    spaceBetween: 10,
+    slidesPerView: 1,
   };
 
   return (
-    <div className="w-full max-h-[100px]">
+    <div className="w-full">
       {/* First Gallery */}
       <div className="mb-0">
-        <Swiper {...swiperConfig}>
-
-            <SwiperSlide>
+        <Swiper 
+          {...swiperConfig}
+          className="w-full"
+          slidesPerView={1}
+          spaceBetween={10}
+        >
+            <SwiperSlide className="!w-full">
               <MobileGalleryFrame bentoItems={bentoItems1} />
-             
             </SwiperSlide>
         
-            <SwiperSlide>
-
+            <SwiperSlide className="!w-full">
               <MobileGalleryFrame bentoItems={bentoItems2} />
             </SwiperSlide>
-            <SwiperSlide>
-
+            
+            <SwiperSlide className="!w-full">
               <MobileGalleryFrame bentoItems={bentoItems3} />
             </SwiperSlide>
             
         </Swiper>
       </div>
-
-  
     </div>
   );
 };

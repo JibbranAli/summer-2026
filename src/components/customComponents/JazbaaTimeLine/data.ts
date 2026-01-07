@@ -325,13 +325,6 @@ export const Data2016 = [
       role: "Data Engineer",
       profileImage: "https://res.cloudinary.com/dgin6wumo/image/upload/v1767541256/Riya_Jain_re4aeu.jpg",
     },
-     {
-      id: "2020-26",
-      linkedinUrl: "https://www.linkedin.com/in/creativesid/",
-      studentName: "Siddharth Sharma",
-      role: "Senior Creative Director",
-      profileImage: "https://res.cloudinary.com/dgin6wumo/image/upload/v1767541260/Siddharth_Sharma_vbkcbc.jpg",
-    },
     {
       id: "2020-27",
       linkedinUrl: "https://www.linkedin.com/in/pooja-rathore-91990a16a/",

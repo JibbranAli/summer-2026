@@ -37,14 +37,14 @@ export default function CourseCard({
     <>
       <Card className="bg-white border-0 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full rounded-lg w-full shadow-md md:shadow-none">
         {/* Red Top Section - Image Only */}
-        {/* Mobile: Larger image area with full fill, Desktop: Standard */}
-        <div className="bg-[#ff0000] h-[280px] md:min-h-[220px] relative overflow-hidden">
+        {/* Image fills completely on all breakpoints */}
+        <div className="bg-[#ff0000] h-[280px] md:h-[220px] relative overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={image.src}
               alt={image.alt}
               fill
-              className="object-cover md:object-contain"
+              className="object-cover"
               style={{ 
                 border: 'none',
                 outline: 'none',
@@ -57,45 +57,33 @@ export default function CourseCard({
         </div>
         
         {/* White Bottom Section */}
-        {/* Mobile: Professional spacing and typography, Desktop: Unchanged */}
-        <div className="bg-white p-5 md:p-6 flex flex-col flex-grow min-h-[300px] md:min-h-0">
+        {/* Reduced spacing for better layout */}
+        <div className="bg-white p-4 md:p-4 flex flex-col flex-grow min-h-[200px] md:min-h-[220px]">
           {/* Course Name Heading */}
-          <h3 className="text-[#ff0000] text-lg md:text-lg lg:text-xl font-bold mb-2 md:mb-3 leading-tight">
+          <h3 className="text-[#ff0000] text-lg lg:text-xl font-bold mb-1.5 leading-tight min-h-[36px] flex items-center">
             {courseName}
           </h3>
           
-          {/* Tagline - Mobile: Full text, Desktop: Line clamp */}
-          <p className="text-gray-700 text-sm md:text-sm mb-5 md:mb-6 leading-relaxed md:line-clamp-3">
+          {/* Tagline - Reduced min-height */}
+          <p className="text-gray-700 text-sm mb-3 leading-relaxed min-h-[48px]">
             {tagline}
           </p>
           
-          <div className="mt-auto space-y-4 md:space-y-4">
-            {/* Pricing */}
-            <div className="flex items-baseline gap-2 flex-wrap">
-              {originalPrice && (
-                <span className="text-gray-500 line-through text-base md:text-base">
-                  ₹{originalPrice}
-                </span>
-              )}
-              <span className="text-2xl md:text-2xl font-bold text-[#ff0000]">
-                ₹{price}
-              </span>
-              <span className="text-sm md:text-sm text-gray-600">+Taxes</span>
-            </div>
-
-            {/* Buttons - Mobile: Full width stacked with better spacing, Desktop: Side by side */}
-            <div className="flex flex-col md:flex-row gap-3 md:gap-3">
+          <div className="mt-auto">
+            {/* Buttons - Side by side on mobile, full width on desktop */}
+            <div className="flex flex-row md:flex-row gap-2 md:gap-3">
               <Button
                 variant="outline"
-                className="w-full md:flex-1 border-2 border-[#ff0000] text-[#ff0000] hover:bg-red-50 font-semibold h-14 md:h-11 text-base md:text-sm shadow-sm min-h-[48px]"
+                className="flex-1 md:flex-1 border-2 border-[#ff0000] text-[#ff0000] hover:bg-red-50 font-semibold h-12 md:h-11 text-xs md:text-sm shadow-sm"
                 onClick={() => setIsDialogOpen(true)}
               >
-                <Download className="w-5 h-5 md:w-4 md:h-4 mr-2" />
-                Download Brochure
+                <Download className="w-4 h-4 mr-1 md:mr-2" />
+                <span className="hidden sm:inline">Download Brochure</span>
+                <span className="sm:hidden">Download</span>
               </Button>
               
               <Button
-                className="w-full md:flex-1 bg-[#ff0000] hover:bg-[#ff0000]/90 text-white font-semibold h-14 md:h-11 text-base md:text-sm shadow-md min-h-[48px]"
+                className="flex-1 md:flex-1 bg-[#ff0000] hover:bg-[#ff0000]/90 text-white font-semibold h-12 md:h-11 text-xs md:text-sm shadow-md"
                 onClick={() => window.open('/application-form', '_blank')}
               >
                 Apply Now

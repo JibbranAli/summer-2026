@@ -144,8 +144,8 @@ const Hero = () => {
       {/* Button Section */}
       <div className="flex items-center justify-center lg:border-l lg:pl-6 w-full lg:w-auto mt-6 lg:mt-0">
         <div className="flex flex-col items-center justify-center w-full lg:w-auto">
-          <a href="/application-form" target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
-            <Button className="bg-[#ff0000] w-full lg:w-auto text-base md:text-base font-bold py-6 md:py-6 px-8 md:px-8 hover:bg-[#ff0000]/90 hover:shadow-lg transition-all duration-300 min-h-[56px] md:min-h-[48px]">
+          <a href="/application-form" target="_blank" rel="noopener noreferrer" className="w-auto lg:w-auto">
+            <Button className="bg-[#ff0000] w-auto lg:w-auto text-base md:text-base font-bold py-5 md:py-6 px-6 md:px-8 hover:bg-[#ff0000]/90 hover:shadow-lg transition-all duration-300 min-h-[48px] md:min-h-[48px]">
               Apply Now
             </Button>
           </a>

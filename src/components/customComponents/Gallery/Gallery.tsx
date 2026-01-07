@@ -199,7 +199,7 @@ const BentoGallery: React.FC = () => {
       <div className="w-full max-w-7xl mx-auto md:min-h-screen sm:min-h-full pb-12 md:pb-4 md:mb-10 bg-black overflow-hidden">
       {/* Main Heading */}
       <div className="w-full text-center py-4 md:py-2 px-4">
-        <h1 className="text-2xl md:text-4xl font-bold text-[#ff0000] leading-tight mb-3 md:mb-4" id="Preivous"> Previous Summer 2024</h1>
+        <h1 className="text-2xl md:text-4xl font-bold text-[#ff0000] leading-tight mb-3 md:mb-4" id="Preivous"> Previous Summer 2025</h1>
         <p className={`text-white text-base md:text-3xl leading-relaxed ${poppins.className}`}>Develop problem-solving skills through team-based exercises and enhance your professional portfolio with industry-relevant projects.</p>
       </div>
 
@@ -226,8 +226,8 @@ const BentoGallery: React.FC = () => {
         />
       </div>
 
-      {/* For mobile - Added pt-8 for top padding or pb-8 for bottom padding */}
-      <div className="md:hidden sm:block pt-8 pb-8">
+      {/* For mobile - Proper spacing and padding */}
+      <div className="md:hidden pt-4 pb-6 px-4">
         <MobileGallery/>
       </div>
 

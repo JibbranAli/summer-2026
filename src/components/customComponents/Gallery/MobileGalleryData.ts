@@ -17,7 +17,6 @@ export const bentoItems1 = [
       title: "Email Preview",
       images: [
         "/assets/event-gallery/G27.jpg",
-        "/assets/event-gallery/G26.jpeg",
         "/assets/event-gallery/G25.jpeg",
       ],
       width: 4,
@@ -92,8 +91,8 @@ export const bentoItems1 = [
       title: "Settings Menu",
       images: [
         "/assets/event-gallery/G3.jpeg",
-        "/assets/event-gallery/G13 copy.jpg",
         "/assets/event-gallery/G6.jpeg",
+        "/assets/event-gallery/G7.jpg",
       ],
       width: 4,
       height: 2,

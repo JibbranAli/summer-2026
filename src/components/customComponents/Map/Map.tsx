@@ -69,10 +69,10 @@ const Map = () => {
 
       {/* Mobile: Apply Now button below boxes */}
       <div className="flex md:hidden mt-6 mb-4 justify-center px-4">
-        <a href="/application-form" className="w-full max-w-md">
+        <a href="/application-form" className="w-auto">
           <Button
             size="lg"
-            className={`w-full bg-[#ff0000] hover:bg-[#ff0000]/90 text-white font-bold text-base md:text-lg py-6 md:py-6 px-8 md:px-12 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md min-h-[56px]`}
+            className={`w-auto bg-[#ff0000] hover:bg-[#ff0000]/90 text-white font-bold text-base md:text-lg py-5 md:py-6 px-6 md:px-12 shadow-lg hover:shadow-xl transition-all duration-300 rounded-md min-h-[48px]`}
           >
             Apply Now
           </Button>

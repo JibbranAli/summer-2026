@@ -100,7 +100,7 @@ const Hero2 = () => {
     <div className="h-full mx-auto w-full">
       <div className="hidden md:flex lg:flex w-full">
         <div className="w-2/3">
-          <img className="w-full h-full object-cover" src="/assets/Hero/hero-section.jpg" alt="Hero" />
+          <img className="w-full h-full object-cover" src="/assets/Hero/hero-section2026.jpg" alt="Hero" />
         </div>
 
         <div className="w-1/3 flex items-center justify-center pr-8">
@@ -188,7 +188,7 @@ const Hero2 = () => {
               <Button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="w-full bg-red-600 hover:bg-red-700 text-white hover:cursor-pointer border border-white font-semibold text-base h-12 min-h-[48px] shadow-md"
+                className="w-auto md:w-full bg-red-600 hover:bg-red-700 text-white hover:cursor-pointer border border-white font-semibold text-base h-12 min-h-[48px] shadow-md"
               >
                 {loading ? (
                   <>
@@ -206,7 +206,7 @@ const Hero2 = () => {
 
       <div className="grid grid-row-2 md:hidden lg:hidden sm:block">
         <div className="mb-2">
-          <img src="/assets/Hero/hero-section.jpg" alt="Hero" />
+          <img src="/assets/Hero/hero-section2026.jpg" alt="Hero" />
         </div>
       </div>
 
@@ -283,8 +283,8 @@ const Hero2 = () => {
             {/* Button Section */}
             <div className="flex items-center justify-center lg:border-l lg:pl-6 w-full lg:w-auto mt-6 lg:mt-0">
               <div className="flex flex-col items-center justify-center w-full lg:w-auto">
-                <a href="/application-form" target="_blank" rel="noopener noreferrer" className="w-full lg:w-auto">
-                  <Button className="bg-[#ff0000] w-full lg:w-auto text-base md:text-base font-bold py-6 md:py-6 px-8 md:px-8 hover:bg-[#ff0000]/90 hover:shadow-lg transition-all duration-300 min-h-[56px] md:min-h-[48px]">
+                <a href="/application-form" target="_blank" rel="noopener noreferrer" className="w-auto lg:w-auto">
+                  <Button className="bg-[#ff0000] w-auto lg:w-auto text-base md:text-base font-bold py-5 md:py-6 px-6 md:px-8 hover:bg-[#ff0000]/90 hover:shadow-lg transition-all duration-300 min-h-[48px] md:min-h-[48px]">
                     Apply Now
                   </Button>
                 </a>

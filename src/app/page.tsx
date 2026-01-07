@@ -60,7 +60,7 @@ export default function Home() {
 {/* <Gallery/> */}
 <BentoGallery/>
 <Benifits/>
-<Timeline/>
+{/* <Timeline/> */}
 {/* <OutCome/> */}
 {/* <JazbaaStartupPlatform/> */}
 

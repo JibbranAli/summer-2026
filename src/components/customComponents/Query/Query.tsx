@@ -25,6 +25,7 @@ import React, {
 } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
 import toast, { Toaster } from 'react-hot-toast';
 import { Poppins } from 'next/font/google';
@@ -70,11 +71,11 @@ export default function QueryForm() {
     email: useRef<HTMLInputElement>(null),
     phone: useRef<HTMLInputElement>(null),
     college: useRef<HTMLInputElement>(null),
-    query: useRef<HTMLInputElement>(null)
+    query: useRef<HTMLTextAreaElement>(null)
   };
 
   // Input change handler with improved type safety
-  const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     
     // Special handling for phone number (only digits)
@@ -129,11 +130,7 @@ export default function QueryForm() {
       inputRefs.college.current?.focus();
     }
 
-    // Query validation
-    if (!formData.query.trim()) {
-      errors.query = "Query is required";
-      inputRefs.query.current?.focus();
-    }
+    // Query is optional - no validation needed
 
     // Display errors
     Object.values(errors).forEach(error => toast.error(error));
@@ -232,15 +229,15 @@ export default function QueryForm() {
                   disabled={loading}
                   className="w-full"
                 />
-                <Input
+                <Textarea
                   ref={inputRefs.query}
-                  type="text"
                   name="query"
-                  placeholder="Your Query"
+                  placeholder="Your Query (Optional)"
                   value={formData.query}
                   onChange={handleInputChange}
                   disabled={loading}
                   className="w-full min-h-[100px]"
+                  rows={4}
                 />
                 <Button 
                   type="submit" 

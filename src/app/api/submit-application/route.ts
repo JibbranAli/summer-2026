@@ -13,7 +13,8 @@ export async function POST(req: Request) {
 
     // Get form data
     const formData = await req.json();
-    console.log('Received form data:', formData);
+    const { step, isPartial, ...applicationData } = formData;
+    console.log('Received form data:', { step, isPartial, applicationData });
 
     // Save to database
     // const application = new Application(formData);
@@ -31,64 +32,61 @@ export async function POST(req: Request) {
       },
     });
 
-    // Send email to admin
-    await transporter.sendMail({
-      from: `"Industrial Training program Program" <${process.env.SMTP_USER}>`,
-      to: process.env.RECIPIENT_EMAIL,
-      subject: `New Industrial Training Program Application - ${formData.fullName}`,
-      html: getApplicationEmailTemplate(formData),
-    });
+    // Only send emails if it's a complete submission (not a partial save)
+    if (!isPartial) {
+      // Send email to admin
+      await transporter.sendMail({
+        from: `"Industrial Training program Program" <${process.env.SMTP_USER}>`,
+        to: process.env.RECIPIENT_EMAIL,
+        subject: `New Industrial Training Program Application - ${applicationData.fullName || 'Incomplete'}`,
+        html: getApplicationEmailTemplate(applicationData),
+      });
 
-    // Send confirmation email to applicant
-    await transporter.sendMail({
-      from: `"Summer Industrial Training Program" <${process.env.SMTP_USER}>`,
-      to: formData.emailAddress,
-      subject: 'Application Received - Summer Industrial Training Program',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #dc2626;">Thank You for Your Application</h2>
-          <p>Dear ${formData.fullName},</p>
-          <p>We have received your application for the Summer Industrial Training Program. Our team will review your application and get back to you soon.</p>
-          <p>Application Details:</p>
-          <ul>
-            <li>Program: ${formData.applyingFor === 'others' ? formData.otherSpecification : formData.applyingFor}</li>
-            <li>Tentative Dates: ${formData.tentativeDates}</li>
-          </ul>
-          <p>If you have any questions, feel free to contact us.</p>
-          <p>Best regards,<br>Summer Industrial Training Program Team</p>
-        </div>
-      `,
-    });
+      // Send confirmation email to applicant (only if email is provided)
+      if (applicationData.emailAddress) {
+        await transporter.sendMail({
+          from: `"Summer Industrial Training Program" <${process.env.SMTP_USER}>`,
+          to: applicationData.emailAddress,
+          subject: 'Application Received - Summer Industrial Training Program',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+              <h2 style="color: #dc2626;">Thank You for Your Application</h2>
+              <p>Dear ${applicationData.fullName || 'Applicant'},</p>
+              <p>We have received your application for the Summer Industrial Training Program. Our team will review your application and get back to you soon.</p>
+              <p>Application Details:</p>
+              <ul>
+                <li>Program: ${applicationData.applyingFor === 'others' ? applicationData.otherSpecification : applicationData.applyingFor || 'Not specified'}</li>
+                <li>Tentative Dates: ${applicationData.tentativeDates || 'Not specified'}</li>
+              </ul>
+              <p>If you have any questions, feel free to contact us.</p>
+              <p>Best regards,<br>Summer Industrial Training Program Team</p>
+            </div>
+          `,
+        });
+      }
 
-    // send email to preet mam 
-
-    await transporter.sendMail({
-      from: `"Summer Industrial Training Program" <${process.env.SMTP_USER}>`,
-      to: process.env.RECIPIENT_EMAIL,
-      subject: 'Application Received - Summer Industrial Training Program',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #dc2626;">New Application Received</h2>
-          <p> Name ${formData.fullName},</p>
-          <p> Whatsapp No ${formData.whatsappNo},</p>
-            <p> college ${formData.collegeName},</p>
-                        <p> Bransh ${formData.branch},</p>
-                                    <p> Semester ${formData.currentSemester},</p>
-
-                                                                        <p> Applying for ${formData.applyingFor},</p>
-
-                                                                         <p> Tentative Date ${formData.tentativeDates},</p>
-
-                                                                          <p> Source ${formData.source},</p>
-
-                                                                          <p> Query ${formData.query},</p>
-                                                                         
-          
-          <p>Application Details:</p>
-          
-        </div>
-      `,
-    });
+      // send email to preet mam 
+      await transporter.sendMail({
+        from: `"Summer Industrial Training Program" <${process.env.SMTP_USER}>`,
+        to: process.env.RECIPIENT_EMAIL,
+        subject: 'Application Received - Summer Industrial Training Program',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #dc2626;">New Application Received</h2>
+            <p> Name ${applicationData.fullName || 'Not provided'},</p>
+            <p> Whatsapp No ${applicationData.whatsappNo || 'Not provided'},</p>
+            <p> college ${applicationData.collegeName || 'Not provided'},</p>
+            <p> Branch ${applicationData.branch || 'Not provided'},</p>
+            <p> Year of Passing ${applicationData.currentSemester || 'Not provided'},</p>
+            <p> Applying for ${applicationData.applyingFor || 'Not provided'},</p>
+            <p> Tentative Date ${applicationData.tentativeDates || 'Not provided'},</p>
+            <p> Source ${applicationData.source || 'Not provided'},</p>
+            <p> Query ${applicationData.query || 'Not provided'},</p>
+            <p>Application Details:</p>
+          </div>
+        `,
+      });
+    }
     return NextResponse.json(
       { message: 'Application submitted successfully' },
       { status: 200 }

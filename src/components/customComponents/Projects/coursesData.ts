@@ -19,7 +19,7 @@ export const courses: Course[] = [
     courseName: "MERN Full Stack Web Development",
     tagline: "Become a Full Stack Web Developer | Learn MERN Stack, Frontend & Backend Development with hands-on projects",
     image: {
-      src: "/assets/Projects/MERN.png",
+      src: "/assets/cards/MERN.jpg",
       alt: "MERN Full Stack Web Development",
       width: 400,
       height: 300,
@@ -33,7 +33,7 @@ export const courses: Course[] = [
     courseName: "Data Science with Machine Learning & AI",
     tagline: "Master Data Science, Machine Learning & AI | Build real-world ML models and AI applications",
     image: {
-      src: "/assets/Projects/MLAI.png",
+      src: "/assets/cards/Data-Science.jpg",
       alt: "Data Science with Machine Learning & AI",
       width: 400,
       height: 300,
@@ -47,7 +47,7 @@ export const courses: Course[] = [
     courseName: "Data Analytics",
     tagline: "Learn Data Analytics | Analyze data, create insights, and make data-driven decisions",
     image: {
-      src: "/assets/Projects/MLAI.png", // Using same image for now - replace later
+      src: "/assets/cards/Data-Analytics.jpg",
       alt: "Data Analytics",
       width: 400,
       height: 300,
@@ -61,7 +61,7 @@ export const courses: Course[] = [
     courseName: "Salesforce",
     tagline: "Master Salesforce | Learn CRM, cloud computing, and Salesforce development",
     image: {
-      src: "/assets/Projects/AWS.png", // Using AWS image for now - replace later
+      src: "/assets/cards/Salesforce.jpg",
       alt: "Salesforce",
       width: 400,
       height: 300,

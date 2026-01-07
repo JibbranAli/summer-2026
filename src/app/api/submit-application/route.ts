@@ -16,24 +16,53 @@ export async function POST(req: Request) {
     const { step, isPartial, ...applicationData } = formData;
     console.log('Received form data:', { step, isPartial, applicationData });
 
-    // Save to database
-    // const application = new Application(formData);
-    // await application.save();
-    // console.log('Application saved to database');
+    // Send data to Google Sheets via Google Apps Script (for both partial and complete submissions)
+    const googleAppsScriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL_APPLICATION_FORM;
+    
+    if (googleAppsScriptUrl) {
+      try {
+        const googleResponse = await fetch(googleAppsScriptUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...applicationData,
+            step: step || '',
+            isPartial: isPartial !== undefined ? isPartial : true,
+          }),
+        });
 
-    // Configure email transport
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
+        const googleResult = await googleResponse.json();
+        
+        if (!googleResult.success) {
+          console.error('Google Sheets error:', googleResult.message);
+          // Continue with email even if Google Sheets fails
+        } else {
+          console.log(`Data saved to Google Sheets successfully (${isPartial ? 'Partial' : 'Complete'})`);
+        }
+      } catch (googleError) {
+        console.error('Error sending to Google Sheets:', googleError);
+        // Continue with email fallback
+      }
+    } else {
+      console.warn('GOOGLE_APPS_SCRIPT_URL_APPLICATION_FORM not configured, skipping Google Sheets submission');
+    }
 
     // Only send emails if it's a complete submission (not a partial save)
-    if (!isPartial) {
+    // Note: Google Sheets saves both partial and complete submissions
+    if (!isPartial && process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
+      try {
+        // Configure email transport
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT),
+          secure: false, // true for 465, false for other ports
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASSWORD,
+          },
+        });
       // Send email to admin
       await transporter.sendMail({
         from: `"Industrial Training program Program" <${process.env.SMTP_USER}>`,
@@ -86,6 +115,10 @@ export async function POST(req: Request) {
           </div>
         `,
       });
+      } catch (emailError) {
+        console.error('Error sending email:', emailError);
+        // Don't fail the request if email fails, Google Sheets is the primary storage
+      }
     }
     return NextResponse.json(
       { message: 'Application submitted successfully' },

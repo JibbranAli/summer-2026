@@ -185,20 +185,24 @@ const Hero2 = () => {
                 aria-label="Your Query"
               />
 
-              <Button
-                onClick={handleSubmit}
-                disabled={loading}
-                className="w-auto md:w-full bg-red-600 hover:bg-red-700 text-white hover:cursor-pointer border border-white font-semibold text-base h-12 min-h-[48px] shadow-md"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Submitting...
-                  </>
-                ) : (
-                  'Submit Query'
-                )}
-              </Button>
+              <div className="flex justify-center md:block">
+                <div className="flex flex-col items-center justify-center w-fit md:w-full">
+                  <Button
+                    onClick={handleSubmit}
+                    disabled={loading}
+                    className="w-fit md:w-full bg-red-600 hover:bg-red-700 text-white hover:cursor-pointer border border-white font-semibold text-base py-5 md:py-6 px-6 md:px-8 min-h-[48px] md:min-h-[48px] shadow-md"
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      'Submit Query'
+                    )}
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

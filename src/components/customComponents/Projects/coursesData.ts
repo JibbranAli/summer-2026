@@ -27,7 +27,7 @@ export const courses: Course[] = [
     price: "6,500",
     originalPrice: "10,000",
     paymentLink: "https://rzp.io/rzp/summer-mern",
-    brochurePdfUrl: "https://example.com/brochures/mern-brochure.pdf", // Dummy - replace later
+    brochurePdfUrl: "https://drive.google.com/file/d/115vELDFKaxrCeqwGpIHS4kQl5kky-c9m/view?usp=sharing",
   },
   {
     courseName: "Data Science with Machine Learning & AI",
@@ -41,7 +41,7 @@ export const courses: Course[] = [
     price: "5,500",
     originalPrice: "8,000",
     paymentLink: "https://rzp.io/rzp/summer-ml",
-    brochurePdfUrl: "https://example.com/brochures/datasci-ml-brochure.pdf", // Dummy - replace later
+    brochurePdfUrl: "https://drive.google.com/file/d/1rGB0UKQ83ryPrlUtxhCPJdeIKVNiy_ia/view?usp=sharing",
   },
   {
     courseName: "Data Analytics",
@@ -55,7 +55,7 @@ export const courses: Course[] = [
     price: "5,500",
     originalPrice: "8,000",
     paymentLink: "https://rzp.io/rzp/summer-data-analytics",
-    brochurePdfUrl: "https://example.com/brochures/data-analytics-brochure.pdf", // Dummy - replace later
+    brochurePdfUrl: "https://drive.google.com/file/d/1Igm3VU4l-520sGe6_742INifBkm3DR3V/view?usp=sharing",
   },
   {
     courseName: "Salesforce",
@@ -69,7 +69,7 @@ export const courses: Course[] = [
     price: "6,500",
     originalPrice: "10,000",
     paymentLink: "https://rzp.io/rzp/summer-salesforce",
-    brochurePdfUrl: "https://example.com/brochures/salesforce-brochure.pdf", // Dummy - replace later
+    brochurePdfUrl: "https://drive.google.com/file/d/1i3FjADtQxfdZWQF_oksEc1jBwC_jCcYA/view?usp=sharing",
   },
 ];
 

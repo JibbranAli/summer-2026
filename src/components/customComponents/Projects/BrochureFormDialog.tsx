@@ -75,12 +75,8 @@ export default function BrochureFormDialog({
   };
 
   const downloadPdf = () => {
-    const link = document.createElement('a');
-    link.href = brochurePdfUrl;
-    link.download = `${courseName.replace(/\s+/g, '_')}_Brochure.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Open PDF in new tab
+    window.open(brochurePdfUrl, '_blank');
   };
 
   const handleSubmit = async () => {
@@ -146,7 +142,7 @@ export default function BrochureFormDialog({
         <div className="space-y-4 mt-4">
           {submitStatus === 'success' && (
             <div className="p-3 bg-green-100 text-green-800 rounded text-sm">
-              Thank you! Your brochure is downloading...
+              Thank you! Your brochure is opening in a new tab...
             </div>
           )}
 

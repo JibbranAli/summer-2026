@@ -19,7 +19,7 @@ const StudentMobileCard: React.FC<StudentProfileCardProps> = ({
   profileImage,
 }) => {
   return (
-    <Card className="bg-white p-2 sm:p-3 md:p-4 flex gap-2 sm:gap-3 md:gap-4 w-full h-auto sm:h-24 relative overflow-visible">
+    <Card className="bg-white p-2 sm:p-3 md:p-4 flex gap-2 sm:gap-3 md:gap-4 w-full h-auto sm:h-24 relative overflow-hidden">
       {/* Left side - Student Image */}
       <div className="flex-shrink-0">
         <div className="w-12 h-12 sm:w-8 sm:h-8 md:w-16 md:h-16 rounded-full overflow-hidden bg-gray-100">
@@ -32,18 +32,18 @@ const StudentMobileCard: React.FC<StudentProfileCardProps> = ({
       </div>
 
       {/* Right side content */}
-      <div className="flex-grow flex flex-col justify-between pr-2 md:pr-0 pt-1 md:pt-0 pb-6 md:pb-0">
+      <div className="flex-grow flex flex-col justify-between pr-2 md:pr-0 pt-1 md:pt-0 pb-6 md:pb-0 min-w-0">
         {/* Top row with name */}
-        <div className="flex justify-between items-start">
-          <h3 className="text-xs sm:text-sm font-semibold text-[#ff0000] truncate flex-1 pr-2 md:pr-2">
+        <div className="flex justify-between items-start min-w-0">
+          <h3 className="text-xs sm:text-sm font-semibold text-[#ff0000] truncate flex-1 pr-2 md:pr-2 max-w-full">
             {studentName} {/* Dynamic Student Name from props */}
           </h3>
         </div>
 
         {/* Company section */}
-        <div className="flex flex-row relative pr-8 md:pr-0">
-            <div className='min-w-[10px]'>
-          <p className="text-[8px] w-full sm:text-[9px] p-[2px] text-black font-semibold line-clamp-2">
+        <div className="flex flex-row relative pr-8 md:pr-0 min-w-0">
+            <div className='min-w-0 flex-1'>
+          <p className="text-[8px] w-full sm:text-[9px] p-[2px] text-black font-semibold line-clamp-2 break-words overflow-hidden">
             {role.length < 17 ? role + '.'.repeat(16 - role.length) :  role.slice(0, 17)}
           </p>
           </div>

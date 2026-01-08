@@ -196,11 +196,11 @@ const BentoGallery: React.FC = () => {
   ];
 
   return (
-      <div className="w-full max-w-7xl mx-auto md:min-h-screen sm:min-h-full pb-12 md:pb-4 md:mb-10 bg-black overflow-hidden">
+    <div className="w-full max-w-7xl mx-auto md:min-h-screen pb-2 md:pb-4 md:mb-10 bg-black overflow-hidden">
       {/* Main Heading */}
-      <div className="w-full text-center py-4 md:py-2 px-4">
-        <h1 className="text-2xl md:text-4xl font-bold text-[#ff0000] leading-tight mb-3 md:mb-4" id="Preivous"> Previous Summer 2025</h1>
-        <p className={`text-white text-base md:text-3xl leading-relaxed ${poppins.className}`}>Develop problem-solving skills through team-based exercises and enhance your professional portfolio with industry-relevant projects.</p>
+      <div className="w-full text-center py-2 md:py-2 px-4">
+        <h1 className="text-2xl md:text-4xl font-bold text-[#ff0000] leading-tight mb-2 md:mb-4" id="Preivous"> Previous Summer 2025</h1>
+        <p className={`text-white text-sm md:text-3xl leading-relaxed ${poppins.className} px-2`}>Develop problem-solving skills through team-based exercises and enhance your professional portfolio with industry-relevant projects.</p>
       </div>
 
       {/* Bento Grid for desktop */} 
@@ -227,7 +227,7 @@ const BentoGallery: React.FC = () => {
       </div>
 
       {/* For mobile - Proper spacing and padding */}
-      <div className="md:hidden pt-4 pb-6 px-4">
+      <div className="md:hidden pt-1 pb-2 px-2">
         <MobileGallery/>
       </div>
 

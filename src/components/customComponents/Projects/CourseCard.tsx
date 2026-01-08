@@ -35,7 +35,7 @@ export default function CourseCard({
 
   return (
     <>
-      <Card className="bg-white border-0 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full rounded-lg w-full shadow-md md:shadow-none">
+      <Card className="bg-white border border-gray-200 hover:border-gray-300 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full rounded-lg w-full shadow-sm md:shadow-sm">
         {/* Red Top Section - Image Only */}
         {/* Image fills completely on all breakpoints */}
         <div className="bg-[#ff0000] h-[280px] md:h-[220px] relative overflow-hidden">

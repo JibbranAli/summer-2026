@@ -25,8 +25,8 @@ const khandFont = localFont(
 
 // https://www.thecreator.one/
 export const metadata: Metadata = {
-  title: "The Creator",
-  description: "Summer Internship Industrial Training Program 2025 | Exclusively for Engineering Students",
+  title: "Summer Internship & Industry Training Program 2026 | Jaipur, India",
+  description: "Join our Project-Based Summer Internship & Training Program 2026 in Jaipur, India. Gain hands-on experience, live projects, and industry-ready skills",
   icons: {
     icon: '/assets/logo2.webp',
     shortcut: '/assets/logo2.webp',

@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import Image from 'next/image';
 import { Card } from "@/components/ui/card";
 import { Check, Globe, User, Flag, Award, Mic2, Briefcase,
 
@@ -80,10 +81,11 @@ const Mentor = () => {
           {/* Right Section */}
           <div className="w-full lg:w-1/2">
             <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden group">
-              <img 
+              <Image 
                 src="/assets/Mentor/vimalsir.webp"
                 alt="Mentor Profile"
-                className="w-full h-full object-cover object-center transform 
+                fill
+                className="object-cover object-center transform 
                   group-hover:scale-105 transition-transform duration-300"
               />
               

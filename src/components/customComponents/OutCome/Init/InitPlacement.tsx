@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import arpitJindal from "../../../../../public/assets/placed-students-photos/arpitjindal.png";
 import akanshAgarwal from "../../../../../public/assets/placed-students-photos/akanshagarwal.png";
 import mannansiddiqui from "../../../../../public/assets/placed-students-photos/mannansiddhiqui.png";
@@ -76,11 +77,12 @@ const InitPlacement = () => {
 
             {/* Profile Image and Name */}
             <div className="flex flex-col items-center w-full mt-6">
-              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#ff0000] flex-shrink-0">
-                <img
+              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#ff0000] flex-shrink-0 relative">
+                <Image
                   src={employee.photo}
                   alt={employee.name}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
               <div className="mt-4 text-center">
@@ -105,11 +107,12 @@ const InitPlacement = () => {
             </div>
 
             {/* Company Logo */}
-            <div className="mt-4 m-4 flex justify-center items-center">
-              <img
+            <div className="mt-4 m-4 flex justify-center items-center relative w-32 h-16">
+              <Image
                 src={employee.companyLogo}
                 alt="Company Logo"
-                className="w-32 h-auto"
+                fill
+                className="object-contain"
               />
             </div>
             </a>

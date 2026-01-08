@@ -103,7 +103,7 @@ export const bentoItems1 = [
       id: 2,
       title: "Email Preview",
       images: [
-        "/assets/event-gallery/G15.jpeg",
+        "/assets/event-gallery/G15.jpg",
         "/assets/event-gallery/G18.jpg",
         "/assets/event-gallery/G7.jpg",
       ],

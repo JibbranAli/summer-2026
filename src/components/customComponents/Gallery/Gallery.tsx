@@ -141,7 +141,7 @@ const BentoGallery: React.FC = () => {
       transitionDuration: 1,
     },
     {
-      id: 8,
+      id: 10,
       title: "Settings Menu",
       images: [
         "/assets/event-gallery/G13.jpeg",
@@ -154,7 +154,7 @@ const BentoGallery: React.FC = () => {
       transitionDuration: 1,
     },
     {
-      id: 9,
+      id: 11,
       title: "Settings Menu",
       images: [
         "/assets/event-gallery/G11.jpg",
@@ -168,7 +168,7 @@ const BentoGallery: React.FC = () => {
     },
     
     {
-      id: 9,
+      id: 12,
       title: "Settings Menu",
       images: [
         "/assets/event-gallery/G7.jpg",
@@ -181,7 +181,7 @@ const BentoGallery: React.FC = () => {
       transitionDuration: 1,
     },
     {
-      id: 9,
+      id: 13,
       title: "Settings Menu",
       images: [
         "/assets/event-gallery/G4.jpeg",

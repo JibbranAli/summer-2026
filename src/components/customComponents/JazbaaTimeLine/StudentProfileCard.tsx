@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Linkedin } from 'lucide-react';
@@ -20,11 +21,13 @@ const StudentProfileCard: React.FC<StudentProfileCardProps> = ({
   return (
     <Card className="bg-white p-2 sm:p-3 md:p-4 flex items-center gap-4 w-full h-auto sm:h-24 relative overflow-hidden">
       {/* Left - Student Image */}
-      <div className="flex-shrink-0 w-8 h-8 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-gray-100">
-        <img
+      <div className="flex-shrink-0 w-8 h-8 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-gray-100 relative">
+        <Image
           src={profileImage}
           alt={`Profile of ${studentName}`}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          unoptimized={profileImage.startsWith('http')}
         />
       </div>
 

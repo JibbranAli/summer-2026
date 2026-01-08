@@ -27,6 +27,11 @@ const khandFont = localFont(
 export const metadata: Metadata = {
   title: "The Creator",
   description: "Summer Internship Industrial Training Program 2025 | Exclusively for Engineering Students",
+  icons: {
+    icon: '/assets/logo2.webp',
+    shortcut: '/assets/logo2.webp',
+    apple: '/assets/logo2.webp',
+  },
 };
 
 export default function RootLayout({

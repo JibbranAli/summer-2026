@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import React from "react";
+import Script from "next/script";
 import localFont from "next/font/local";
 import { Roboto } from 'next/font/google';
 import "./globals.css";
@@ -44,6 +45,19 @@ export default function RootLayout({
       <body
         className={`${khandFont.className}  bg-black overflow-x-hidden antialiased`}
       >
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RH7RW5EHGZ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RH7RW5EHGZ');
+          `}
+        </Script>
 
         <div className="overflow-x-hidden">
         <Navbar/>

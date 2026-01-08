@@ -134,7 +134,6 @@ export function JazbaaTimeLine() {
     <div className="w-full" id="Placement">
          <div className="w-full text-center pt-10 md:pt-16 pb-4 px-4">
         <h1 className="text-2xl md:text-4xl font-bold text-[#ff0000] leading-tight mb-3 md:mb-4" id="Placement">Our Summer Alumni's Working at</h1>
-        <p className={`text-white ${poppins.className} text-base md:text-lg leading-relaxed`}>A Unique Placement Plateform For Core Technical Job Roles In Dream Companies.</p>
       </div>
       <Timeline data={data} />
     </div>

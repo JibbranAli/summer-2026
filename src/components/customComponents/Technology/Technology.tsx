@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Inter, Poppins } from 'next/font/google';
@@ -58,10 +59,12 @@ export default function TechStack() {
               {/* todo I want to show only 4 cards in a row  */}
               <Card className="group  relative flex flex-col items-center bg-white justify-center w-24 h-24 space-y-2 overflow-hidden p-2 text-white rounded-lg shadow-lg hover:shadow-xl transition">
                 <div className="relative flex items-center justify-center w-16 h-16">
-                  <img
+                  <Image
                     src={tech.image || "/placeholder.svg"}
                     alt={`${tech.name} logo`}
-                    className="w-full h-full object-contain transition-transform group-hover:scale-110"
+                    width={64}
+                    height={64}
+                    className="object-contain transition-transform group-hover:scale-110"
                   />
                 </div>
                 <p className="text-xs font-medium text-center text-black">{tech.name}</p>

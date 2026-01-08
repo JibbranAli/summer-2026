@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 // import { IndiaMap } from "@/components/ui/India-map";
 import { Badge } from "@/components/ui/badge"
@@ -64,8 +65,8 @@ const Hero = () => {
 
 {/* start right section */}
 
-<div className="w-full h-full">
-  <img src="/assets/Hero/HeroImage.png" className="w-full h-96"/>
+<div className="w-full h-full relative">
+  <Image src="/assets/Hero/HeroImage.png" alt="Hero" width={800} height={384} className="w-full h-96 object-cover" />
 </div>
 
 {/* end right section  */}

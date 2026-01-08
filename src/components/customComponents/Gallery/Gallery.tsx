@@ -29,6 +29,7 @@ const ImageCycler: React.FC<ImageCyclerProps> = ({ images, interval = 2000, tran
   return (
     <div className="w-full h-full relative">
       <AnimatePresence mode="wait">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}

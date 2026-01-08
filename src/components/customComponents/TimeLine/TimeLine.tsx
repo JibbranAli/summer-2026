@@ -64,6 +64,7 @@ const TimelineItem = ({ number, title, description, side = 'left', avatar = '/ap
             {description}
           </p>
         </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <motion.img
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}

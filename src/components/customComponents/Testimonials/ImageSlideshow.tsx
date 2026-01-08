@@ -20,6 +20,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images }) => {
   return (
     <div className="w-full h-full relative overflow-hidden rounded-lg">
       <AnimatePresence mode="wait">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}

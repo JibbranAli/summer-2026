@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import JazbaaCard from "./JazbaaCard";
 import InitCard from "./InitCard";
 
@@ -23,7 +24,7 @@ export function OutCome() {
               <div className="hidden lg:block absolute left-[90px] top-full">
                 <div className="relative w-32 h-24">
                   <div className="absolute top-0 left-1/2 transform -rotate-12">
-                    <img src="/assets/arrow.png" alt="Left arrow" className="hidden lg:block" />
+                    <Image src="/assets/arrow.png" alt="Left arrow" width={128} height={96} className="hidden lg:block" />
                   </div>
                 </div>
               </div>
@@ -32,7 +33,7 @@ export function OutCome() {
               <div className="hidden lg:block absolute right-1/4 top-full">
                 <div className="relative w-32 h-24">
                   <div className="absolute top-0 left-1/2 transform -rotate-90">
-                    <img src="/assets/arrow.png" alt="Right arrow" className="hidden lg:block" />
+                    <Image src="/assets/arrow.png" alt="Right arrow" width={128} height={96} className="hidden lg:block" />
                   </div>
                 </div>
               </div>

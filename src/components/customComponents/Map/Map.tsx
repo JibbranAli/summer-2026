@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 import { Youtube,Instagram ,Linkedin ,Globe ,Cpu ,KeyRound  } from 'lucide-react';
@@ -57,8 +58,8 @@ const Map = () => {
         </div>
 
         {/* Mobile: Map second (appears first due to order), Desktop: Right column */}
-        <div className="order-1 md:order-2 w-full h-full flex items-center justify-center min-h-[300px] md:min-h-[600px] lg:min-h-[800px] xl:min-h-[900px]">
-          <img src="/assets/map/map.png" className="w-full h-[300px] md:h-[600px] lg:h-[800px] xl:h-[900px] object-contain"/>
+        <div className="order-1 md:order-2 w-full h-full flex items-center justify-center min-h-[300px] md:min-h-[600px] lg:min-h-[800px] xl:min-h-[900px] relative">
+          <Image src="/assets/map/map.png" alt="Map" fill className="object-contain" />
         </div>
       </div>
 

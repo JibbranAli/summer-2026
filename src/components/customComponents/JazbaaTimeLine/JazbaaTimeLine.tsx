@@ -36,7 +36,7 @@ function YearContent({
       <p className={`text-white dark:text-neutral-200 text-sm md:text-sm font-normal mb-4 sm:mb-6 md:mb-8 leading-relaxed ${poppins.className}`}>
         {description}
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 overflow-hidden">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 md:gap-4 overflow-hidden">
         {/* Desktop: Show all */}
         {students.map((student) => (
           <div key={student.id} className="hidden md:block">
@@ -51,7 +51,7 @@ function YearContent({
 
         {/* Mobile: Show limited with load more - 2 columns */}
         {studentsToShow.map((student) => (
-          <div key={student.id} className="md:hidden">
+          <div key={student.id} className="md:hidden flex">
             <StudentMobileCard
               linkedinUrl={student.linkedinUrl}
               studentName={student.studentName}

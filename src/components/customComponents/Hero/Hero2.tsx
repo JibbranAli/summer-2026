@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
@@ -209,8 +210,8 @@ const Hero2 = () => {
       </div>
 
       <div className="grid grid-row-2 md:hidden lg:hidden sm:block">
-        <div className="mb-2">
-          <img src="/assets/Hero/hero-section2026.jpg" alt="Hero" />
+        <div className="mb-2 relative w-full h-auto">
+          <Image src="/assets/Hero/hero-section2026.jpg" alt="Hero" width={1200} height={600} className="w-full h-auto" />
         </div>
       </div>
 

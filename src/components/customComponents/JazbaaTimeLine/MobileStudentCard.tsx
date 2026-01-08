@@ -20,10 +20,10 @@ const StudentMobileCard: React.FC<StudentProfileCardProps> = ({
   profileImage,
 }) => {
   return (
-    <Card className="bg-white p-2 sm:p-3 md:p-4 flex gap-2 sm:gap-3 md:gap-4 w-full h-auto sm:h-24 relative overflow-hidden">
+    <Card className="bg-white p-2.5 sm:p-3 md:p-4 flex gap-2.5 sm:gap-3 md:gap-4 w-full h-full min-h-[75px] sm:h-24 relative overflow-hidden">
       {/* Left side - Student Image */}
       <div className="flex-shrink-0">
-        <div className="w-12 h-12 sm:w-8 sm:h-8 md:w-16 md:h-16 rounded-full overflow-hidden bg-gray-100 relative">
+        <div className="w-14 h-14 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full overflow-hidden bg-gray-100 relative">
           <Image
             src={profileImage}
             alt={`Profile of ${studentName}`}
@@ -35,22 +35,16 @@ const StudentMobileCard: React.FC<StudentProfileCardProps> = ({
       </div>
 
       {/* Right side content */}
-      <div className="flex-grow flex flex-col justify-between pr-2 md:pr-0 pt-1 md:pt-0 pb-6 md:pb-0 min-w-0">
-        {/* Top row with name */}
-        <div className="flex justify-between items-start min-w-0">
-          <h3 className="text-xs sm:text-sm font-semibold text-[#ff0000] truncate flex-1 pr-2 md:pr-2 max-w-full">
-            {studentName} {/* Dynamic Student Name from props */}
-          </h3>
-        </div>
+      <div className="flex-grow flex flex-col justify-center pr-8 md:pr-0 min-w-0 gap-1">
+        {/* Name - Allow wrapping for long names */}
+        <h3 className="text-[11px] sm:text-sm font-semibold text-[#ff0000] leading-tight line-clamp-2 break-words">
+          {studentName}
+        </h3>
 
-        {/* Company section */}
-        <div className="flex flex-row relative pr-8 md:pr-0 min-w-0">
-            <div className='min-w-0 flex-1'>
-          <p className="text-[8px] w-full sm:text-[9px] p-[2px] text-black font-semibold line-clamp-2 break-words overflow-hidden">
-            {role.length < 17 ? role + '.'.repeat(16 - role.length) :  role.slice(0, 17)}
-          </p>
-          </div>
-        </div>
+        {/* Role - Proper text wrapping */}
+        <p className="text-[9px] sm:text-[10px] text-black font-medium leading-tight line-clamp-2 break-words">
+          {role}
+        </p>
       </div>
 
       {/* Badge - positioned at bottom right corner for mobile, top right for desktop */}
@@ -59,7 +53,7 @@ const StudentMobileCard: React.FC<StudentProfileCardProps> = ({
           variant="outline"
           className="flex items-center gap-1 hover:bg-blue-50 cursor-pointer text-[8px] sm:text-xs bg-white shadow-sm"
         >
-          <Linkedin className="w-2 h-2 sm:w-3 sm:h-3" />
+          <Linkedin className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
         </Badge>
       </a>
     </Card>

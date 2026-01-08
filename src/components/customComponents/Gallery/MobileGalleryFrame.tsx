@@ -55,6 +55,7 @@ const ImageCycler: React.FC<ImageCyclerProps> = ({
   return (
     <div className="w-full h-full relative" style={{ minHeight: '180px' }}>
       <AnimatePresence mode="wait">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <motion.img
           key={currentIndex}
           src={validImages[currentIndex]}

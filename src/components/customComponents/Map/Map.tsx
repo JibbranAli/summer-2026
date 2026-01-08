@@ -26,7 +26,6 @@ const Map = () => {
           {/* Decorative background elements */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_50%)]" />
-            <div className="absolute right-0 h-full w-[100px] bg-gradient-to-r from-transparent to-red-700/30" />
           </div>
 
           <div className="relative p-4 md:p-8 md:p-0 z-10 pt-4 md:pt-8 text-white space-y-3 md:space-y-5 overflow-hidden">

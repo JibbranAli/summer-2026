@@ -14,7 +14,6 @@ const NAV_ITEMS = [
   { href: "#Projects", text: "Projects" },
 
   { href: "#Placement", text: "Placement" },
-  { href: "#Benefits", text: "Benefits" },
   // { href: "#JAZBAA", text: "JAZBAA" },
   { href: "#Preivous", text: "Previous Summer" },
 ];

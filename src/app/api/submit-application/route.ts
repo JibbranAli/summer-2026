@@ -18,9 +18,15 @@ export async function POST(req: Request) {
 
     // Send data to Google Sheets via Google Apps Script (for both partial and complete submissions)
     const googleAppsScriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL_APPLICATION_FORM;
+    let googleSheetsSuccess = false;
+    let googleSheetsError = null;
     
     if (googleAppsScriptUrl) {
       try {
+        const submissionType = isPartial ? 'Partial' : 'Complete';
+        console.log(`📤 Sending application form data to Google Sheets (${submissionType}, Step ${step})...`);
+        console.log('📋 Data being sent:', { ...applicationData, step: step || '', isPartial: isPartial !== undefined ? isPartial : true });
+        
         const googleResponse = await fetch(googleAppsScriptUrl, {
           method: 'POST',
           headers: {
@@ -33,20 +39,37 @@ export async function POST(req: Request) {
           }),
         });
 
+        console.log(`📥 Google Apps Script response status: ${googleResponse.status}`);
+
+        if (!googleResponse.ok) {
+          const errorText = await googleResponse.text();
+          
+          // Check for 403 Access Denied error
+          if (googleResponse.status === 403) {
+            throw new Error(`403 Access Denied: The Google Apps Script web app is not accessible. Please ensure: 1) The script is deployed as a Web App, 2) "Who has access" is set to "Anyone", 3) The script has been authorized. Error details: ${errorText.substring(0, 200)}`);
+          }
+          
+          throw new Error(`Google Apps Script returned status ${googleResponse.status}: ${errorText.substring(0, 200)}`);
+        }
+
         const googleResult = await googleResponse.json();
+        console.log('📥 Google Apps Script response:', googleResult);
         
         if (!googleResult.success) {
-          console.error('Google Sheets error:', googleResult.message);
-          // Continue with email even if Google Sheets fails
+          googleSheetsError = googleResult.message || 'Unknown error from Google Apps Script';
+          console.error('❌ Google Sheets error:', googleSheetsError);
         } else {
-          console.log(`Data saved to Google Sheets successfully (${isPartial ? 'Partial' : 'Complete'})`);
+          googleSheetsSuccess = true;
+          console.log(`✅ Application form data saved to Google Sheets successfully (${submissionType}, Step ${step})`);
         }
       } catch (googleError) {
-        console.error('Error sending to Google Sheets:', googleError);
-        // Continue with email fallback
+        googleSheetsError = googleError instanceof Error ? googleError.message : String(googleError);
+        console.error('❌ Error sending to Google Sheets:', googleSheetsError);
+        // Continue with email fallback - don't fail the request
       }
     } else {
-      console.warn('GOOGLE_APPS_SCRIPT_URL_APPLICATION_FORM not configured, skipping Google Sheets submission');
+      console.warn('⚠️ GOOGLE_APPS_SCRIPT_URL_APPLICATION_FORM not configured, skipping Google Sheets submission');
+      googleSheetsError = 'Environment variable not configured';
     }
 
     // Only send emails if it's a complete submission (not a partial save)
@@ -120,8 +143,15 @@ export async function POST(req: Request) {
         // Don't fail the request if email fails, Google Sheets is the primary storage
       }
     }
+    // Return response with Google Sheets status
     return NextResponse.json(
-      { message: 'Application submitted successfully' },
+      { 
+        message: 'Application submitted successfully',
+        googleSheetsSaved: googleSheetsSuccess,
+        googleSheetsError: googleSheetsError,
+        step: step,
+        isPartial: isPartial
+      },
       { status: 200 }
     );
 

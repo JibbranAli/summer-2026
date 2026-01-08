@@ -19,6 +19,7 @@ export async function POST(request: Request) {
     
     if (googleAppsScriptUrl) {
       try {
+        console.log('Sending query form data to Google Sheets...');
         const googleResponse = await fetch(googleAppsScriptUrl, {
           method: 'POST',
           headers: {
@@ -33,20 +34,24 @@ export async function POST(request: Request) {
           }),
         });
 
+        if (!googleResponse.ok) {
+          throw new Error(`Google Apps Script returned status ${googleResponse.status}`);
+        }
+
         const googleResult = await googleResponse.json();
         
         if (!googleResult.success) {
           console.error('Google Sheets error:', googleResult.message);
           // Continue with email fallback even if Google Sheets fails
         } else {
-          console.log('Data saved to Google Sheets successfully');
+          console.log('✅ Query form data saved to Google Sheets successfully');
         }
       } catch (googleError) {
-        console.error('Error sending to Google Sheets:', googleError);
-        // Continue with email fallback
+        console.error('❌ Error sending to Google Sheets:', googleError);
+        // Continue with email fallback - don't fail the request
       }
     } else {
-      console.warn('GOOGLE_APPS_SCRIPT_URL not configured, skipping Google Sheets submission');
+      console.warn('⚠️ GOOGLE_APPS_SCRIPT_URL not configured, skipping Google Sheets submission');
     }
 
     // Optional: Send email notification (if SMTP is configured)

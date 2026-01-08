@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -106,69 +106,236 @@ export function ApplicationForm() {
     },
   })
 
-  // Auto-save function
-  const autoSave = async (step: number, values: Partial<FormValues>) => {
+  // Debounce timer for autosave
+  const autosaveTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const lastSavedDataRef = useRef<string>('')
+
+  // Auto-save function (silent background save - only shows errors)
+  const autoSave = async (step: number, values: Partial<FormValues>, showToast: boolean = false) => {
     try {
       setIsSaving(true)
+      console.log(`🔄 [Step ${step}] Auto-saving all accumulated data...`)
+      console.log(`🔄 [Step ${step}] Data being sent:`, {
+        step,
+        isPartial: true,
+        fullName: values.fullName,
+        whatsappNo: values.whatsappNo,
+        emailAddress: values.emailAddress,
+        collegeName: values.collegeName,
+        branch: values.branch,
+        currentSemester: values.currentSemester,
+        applyingFor: values.applyingFor,
+        tentativeDates: values.tentativeDates,
+        source: values.source,
+        referenceName: values.referenceName,
+        query: values.query,
+      })
+      
+      const payload = {
+        ...values,
+        step,
+        isPartial: true,
+      }
+      
+      console.log(`🔄 [Step ${step}] Full payload:`, payload)
+      
       const response = await fetch('/api/submit-application', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...values,
-          step,
-          isPartial: true,
-        }),
+        body: JSON.stringify(payload),
       })
 
+      const data = await response.json()
+      console.log(`📥 Response for step ${step}:`, data)
+
       if (!response.ok) {
-        throw new Error('Auto-save failed')
+        throw new Error(data.message || `Auto-save failed with status ${response.status}`)
       }
 
-      // Mark step as completed
-      if (!completedSteps.includes(step)) {
-        setCompletedSteps([...completedSteps, step])
+      // Check if Google Sheets saved successfully
+      if (data.googleSheetsSaved) {
+        console.log(`✅ Step ${step} saved to Google Sheets successfully (all accumulated data)`)
+        // Mark step as completed
+        if (!completedSteps.includes(step)) {
+          setCompletedSteps([...completedSteps, step])
+        }
+        // Only show success toast if explicitly requested (e.g., on "Next" button)
+        if (showToast) {
+          toast.success(`Step ${step} saved successfully!`, { duration: 2000 })
+        }
+      } else {
+        console.warn(`⚠️ Step ${step} API call succeeded but Google Sheets save failed:`, data.googleSheetsError)
+        // Still mark as completed since API call succeeded
+        if (!completedSteps.includes(step)) {
+          setCompletedSteps([...completedSteps, step])
+        }
+        // Always show error toast
+        const errorMessage = data.googleSheetsError || 'Unknown error';
+        const is403Error = errorMessage.includes('403') || errorMessage.includes('Access denied');
+        
+        if (is403Error) {
+          toast.error(`Step ${step} saved locally but Google Sheets access denied. Please check the Google Apps Script deployment settings.`, {
+            duration: 8000,
+          });
+        } else {
+          toast.error(`Step ${step} saved locally but failed to sync to Google Sheets. Please try again.`, {
+            duration: 5000,
+          });
+        }
       }
     } catch (error) {
-      console.error('Auto-save error:', error)
-      // Don't show error toast for auto-save failures
+      console.error(`❌ Auto-save error for step ${step}:`, error)
+      // Always show error toast
+      toast.error(`Failed to save step ${step}. Please check your connection and try again.`, {
+        duration: 5000,
+      })
     } finally {
       setIsSaving(false)
     }
   }
 
+  // Save data when step changes (ensures step 1 data is saved when moving to step 2)
+  useEffect(() => {
+    // Skip on initial mount
+    const allValues = form.getValues()
+    const hasAnyData = allValues.fullName || allValues.whatsappNo || allValues.emailAddress || allValues.collegeName ||
+                      allValues.branch || allValues.currentSemester || allValues.applyingFor || allValues.tentativeDates ||
+                      allValues.source || allValues.referenceName || allValues.query
+    
+    if (!hasAnyData) return
+
+    // When step changes to 2 or 3, ensure we save all accumulated data
+    if (currentStep === 2 || currentStep === 3) {
+      const hasStep1Data = allValues.fullName || allValues.whatsappNo || allValues.emailAddress || allValues.collegeName
+      const hasStep2Data = allValues.branch || allValues.currentSemester || allValues.applyingFor || allValues.tentativeDates
+      const hasStep3Data = allValues.source || allValues.referenceName || allValues.query
+
+      // Determine which step to save based on available data
+      let stepToSave = currentStep
+      if (hasStep3Data) stepToSave = 3
+      else if (hasStep2Data) stepToSave = 2
+      else if (hasStep1Data) stepToSave = 1
+
+      // Only save if we have meaningful data and it's different from last save
+      const currentDataHash = JSON.stringify(allValues)
+      if (stepToSave > 0 && (hasStep1Data || hasStep2Data || hasStep3Data) && currentDataHash !== lastSavedDataRef.current) {
+        console.log(`🔄 Step changed to ${currentStep}, saving all accumulated data (step ${stepToSave}):`, allValues)
+        console.log(`🔄 Step 1 fields check:`, {
+          fullName: allValues.fullName,
+          whatsappNo: allValues.whatsappNo,
+          emailAddress: allValues.emailAddress,
+          collegeName: allValues.collegeName
+        })
+        autoSave(stepToSave, allValues, false) // Silent save on step change
+        lastSavedDataRef.current = currentDataHash
+      }
+    }
+  }, [currentStep]) // Trigger when step changes
+
+  // Auto-save on field changes (debounced) - saves all accumulated data
+  useEffect(() => {
+    const subscription = form.watch((values) => {
+      // Clear existing timer
+      if (autosaveTimerRef.current) {
+        clearTimeout(autosaveTimerRef.current)
+      }
+
+      // Check if we have any meaningful data
+      const hasStep1Data = values.fullName || values.whatsappNo || values.emailAddress || values.collegeName
+      const hasStep2Data = values.branch || values.currentSemester || values.applyingFor || values.tentativeDates
+      const hasStep3Data = values.source || values.referenceName || values.query
+
+      // Only save if we have at least Step 1 data
+      if (hasStep1Data || hasStep2Data || hasStep3Data) {
+        // Create a hash of current data to avoid duplicate saves
+        const dataHash = JSON.stringify(values)
+        
+        // Debounce: wait 3 seconds after last change before saving
+        autosaveTimerRef.current = setTimeout(() => {
+          const allValues = form.getValues()
+          const currentDataHash = JSON.stringify(allValues)
+          
+          // Only save if data has changed
+          if (currentDataHash !== lastSavedDataRef.current && (allValues.fullName || allValues.whatsappNo || allValues.emailAddress)) {
+            // Determine step based on current step and available data
+            let saveStep = currentStep
+            if (hasStep3Data) saveStep = 3
+            else if (hasStep2Data) saveStep = 2
+            else if (hasStep1Data) saveStep = 1
+            
+            console.log(`🔄 Auto-saving after field change (step ${saveStep}):`, allValues)
+            autoSave(saveStep, allValues, false) // Silent background save
+            lastSavedDataRef.current = currentDataHash
+          }
+        }, 3000) // 3 second delay after user stops typing
+      }
+    })
+
+    return () => {
+      subscription.unsubscribe()
+      if (autosaveTimerRef.current) {
+        clearTimeout(autosaveTimerRef.current)
+      }
+    }
+  }, [form, currentStep])
+
   // Validate and move to next step
   const handleNext = async () => {
     let isValid = false
-    let values: Partial<FormValues> = {}
 
     if (currentStep === 1) {
       isValid = await form.trigger(['fullName', 'whatsappNo', 'emailAddress', 'collegeName'])
-      values = {
-        fullName: form.getValues('fullName'),
-        whatsappNo: form.getValues('whatsappNo'),
-        emailAddress: form.getValues('emailAddress'),
-        collegeName: form.getValues('collegeName'),
-      }
     } else if (currentStep === 2) {
       isValid = await form.trigger(['branch', 'currentSemester', 'applyingFor', 'tentativeDates'])
-      values = {
-        ...form.getValues(),
-      }
     } else if (currentStep === 3) {
       isValid = await form.trigger(['source'])
-      values = {
-        ...form.getValues(),
-      }
     }
 
     if (isValid) {
-      // Auto-save current step
-      await autoSave(currentStep, values)
+      // Get ALL accumulated form data (from all steps filled so far)
+      const allFormValues = form.getValues()
+      console.log(`💾 [Step ${currentStep}] Form values before saving:`, allFormValues)
+      console.log(`💾 [Step ${currentStep}] Step 1 fields:`, {
+        fullName: allFormValues.fullName,
+        whatsappNo: allFormValues.whatsappNo,
+        emailAddress: allFormValues.emailAddress,
+        collegeName: allFormValues.collegeName
+      })
+      
+      // Determine which step to save based on available data
+      const hasStep1Data = allFormValues.fullName || allFormValues.whatsappNo || allFormValues.emailAddress || allFormValues.collegeName
+      const hasStep2Data = allFormValues.branch || allFormValues.currentSemester || allFormValues.applyingFor || allFormValues.tentativeDates
+      const hasStep3Data = allFormValues.source || allFormValues.referenceName || allFormValues.query
+      
+      let stepToSave = currentStep
+      if (hasStep3Data) stepToSave = 3
+      else if (hasStep2Data) stepToSave = 2
+      else if (hasStep1Data) stepToSave = 1
+      
+      // Save ALL accumulated data BEFORE moving to next step
+      // This ensures step 1 data is saved when moving to step 2
+      console.log(`💾 Saving step ${stepToSave} data (includes all previous steps) before moving to step ${currentStep + 1}`)
+      await autoSave(stepToSave, allFormValues, true) // Show toast on "Next" button click
+      
+      // Update last saved data hash
+      lastSavedDataRef.current = JSON.stringify(allFormValues)
       
       if (currentStep < 3) {
-        setCurrentStep(currentStep + 1)
+        // Move to next step
+        const nextStep = currentStep + 1
+        setCurrentStep(nextStep)
+        
+        // Also save again after step change to ensure data is captured
+        setTimeout(async () => {
+          const updatedValues = form.getValues()
+          const updatedStep = hasStep3Data ? 3 : (hasStep2Data ? 2 : 1)
+          if (updatedStep >= nextStep) {
+            console.log(`💾 Additional save after step change to ${nextStep}`)
+            await autoSave(updatedStep, updatedValues, false) // Silent save
+          }
+        }, 1000)
       } else {
         // Final submission
         await onSubmit(form.getValues())
@@ -201,18 +368,34 @@ export function ApplicationForm() {
         })
 
         const data = await response.json()
+        console.log('📥 Final submission response:', data)
 
         if (!response.ok) {
           throw new Error(data.message || 'Submission failed')
         }
 
-        // Reset form on success
-        form.reset()
-        setShowOtherSpecification(false)
-        setCurrentStep(1)
-        setCompletedSteps([])
-        resolve('Application submitted successfully!')
-        toast.success("Application submitted successfully!")
+        // Check if Google Sheets saved successfully
+        if (data.googleSheetsSaved) {
+          console.log('✅ Application saved to Google Sheets successfully')
+          // Reset form on success
+          form.reset()
+          setShowOtherSpecification(false)
+          setCurrentStep(1)
+          setCompletedSteps([])
+          resolve('Application submitted successfully!')
+          toast.success("Application submitted successfully!")
+        } else {
+          console.warn('⚠️ Application API call succeeded but Google Sheets save failed:', data.googleSheetsError)
+          // Still reset form but show warning
+          form.reset()
+          setShowOtherSpecification(false)
+          setCurrentStep(1)
+          setCompletedSteps([])
+          resolve('Application submitted, but there was an issue saving to Google Sheets. Please contact support.')
+          toast.error(`Application submitted, but failed to sync to Google Sheets. ${data.googleSheetsError || ''}`, {
+            duration: 8000,
+          })
+        }
       } catch (error) {
         console.error('Submission error:', error)
         reject(error instanceof Error ? error.message : 'Failed to submit application')

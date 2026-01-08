@@ -141,13 +141,6 @@ export const Data2014 = [
 
 export const Data2015 = [
     {
-      id: "2015-1",
-      linkedinUrl: "https://www.linkedin.com/in/lordzuko/",
-      studentName: "Himanshu Maurya",
-      role: "AIML Language Engineer",
-      profileImage: "https://res.cloudinary.com/dgin6wumo/image/upload/v1767540618/Himanshu_Maurya_zn9sky.gif",
-    },
-    {
       id: "2015-2",
       linkedinUrl: "https://www.linkedin.com/in/aishwarya2khandelwal/",
       studentName: "Aishwarya ",

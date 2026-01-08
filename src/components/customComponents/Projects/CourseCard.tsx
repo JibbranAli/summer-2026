@@ -79,7 +79,7 @@ export default function CourseCard({
               >
                 <Download className="w-4 h-4 mr-1 md:mr-2" />
                 <span className="hidden sm:inline">Download Brochure</span>
-                <span className="sm:hidden">Download</span>
+                <span className="sm:hidden">Download Brochure</span>
               </Button>
               
               <Button

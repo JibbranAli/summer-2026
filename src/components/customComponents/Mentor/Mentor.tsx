@@ -40,13 +40,13 @@ const Mentor = () => {
             <div className="prose prose-invert max-w-none">
               {/* this is for desktop */}
               <h1 className="text-3xl hidden md:block md:text-4xl lg:text-4xl text-center md:text-left font-bold mb-3">
-                <p className="text-[#ff0000]">Your Summer Internship Founder: <br/> Mr Vimal Daga</p>
+                <p className="text-[#ff0000]">Man Behind this Initiative : Mr. Vimal Daga</p>
               </h1>
 
               {/* for mobile  */}
 
               <h1 className="text-3xl sm:block md:hidden md:text-4xl lg:text-4xl text-center md:text-left font-bold mb-3">
-                <p className="text-[#ff0000]">Your Summer Founder: <br/> Mr Vimal Daga</p>
+                <p className="text-[#ff0000]">Man Behind this Initiative : Mr. Vimal Daga</p>
               </h1>
               
               <p className={`text-md md:text-2xl text-center md:text-left text-white mb-6 ${poppins.className}`}>
